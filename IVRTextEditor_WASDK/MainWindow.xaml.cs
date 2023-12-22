@@ -63,6 +63,13 @@ namespace IVRTextEditor_WASDK
 
         }
 
+        private void TabbedView_TabCloseRequested(TabView sender, TabViewTabCloseRequestedEventArgs args)
+        {
+            var TI = args.Item;
+            TabbedView.TabItems.Remove(TI);
+            LoadBounds();
+        }
+
         private void TabbedView_AddTabButtonClick(TabView sender, object args)
         {
             AddTabItem();
