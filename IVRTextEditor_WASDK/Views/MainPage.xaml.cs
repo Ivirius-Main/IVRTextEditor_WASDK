@@ -19,6 +19,8 @@ public sealed partial class MainPage : Page
         InitializeComponent();
     }
 
+
+
     public List<string> Fonts
     {
         get
