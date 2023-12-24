@@ -365,7 +365,7 @@ ColumnSpacing="12">
                         <PathIcon Data="M18.736 3.5c-.543 0-.986.495-.986 1.023a.75.75 0 0 1-1.5 0C16.25 3.278 17.258 2 18.736 2c.855 0 1.684.4 2.15 1.117.49.751.5 1.724-.057 2.672-.285.484-.673.847-1.045 1.141-.187.148-.379.284-.557.41l-.078.056a17.45 17.45 0 0 0-.432.311c-.356.268-.619.511-.78.793h2.514a.75.75 0 0 1 0 1.5H17a.75.75 0 0 1-.75-.75c0-1.396.821-2.182 1.565-2.741.157-.119.32-.234.472-.341l.074-.052c.177-.126.34-.243.493-.363.306-.242.532-.47.682-.724.31-.53.229-.886.093-1.094-.158-.244-.486-.435-.893-.435Z M15.26 4.71c.06.562.385 1.043.847 1.318L10.987 12l5.583 6.512a.75.75 0 1 1-1.14.976L10 13.152l-5.43 6.336a.75.75 0 0 1-1.14-.976L9.013 12 3.431 5.488a.75.75 0 1 1 1.139-.976L10 10.848l5.26-6.137Z" Height="24" Width="24"/>
 
                     </ToggleButton>
-                    <ComboBox x:Name="FontsCombo" ItemsSource="{x:Bind Fonts}" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" IsEditable="True" PlaceholderText="Font" SelectionChanged="FontsCombo_SelectionChanged" Margin="0,0,40,0">
+                    <ComboBox x:Name="FontsCombo" ItemsSource="{x:Bind Fonts}" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" IsEditable="True" PlaceholderText="Font" SelectionChanged="FontsCombo_SelectionChanged">
                         <ComboBox.ItemTemplate>
                             <DataTemplate x:DataType="x:String">
                                 <TextBlock FontFamily="{x:Bind}" Text="{x:Bind}" />
@@ -373,25 +373,15 @@ ColumnSpacing="12">
                         </ComboBox.ItemTemplate>
                     </ComboBox>
 
-                    <ComboBox x:Name="fontSizeComboBox" Grid.Column="4" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" IsEditable="True" 
-                               Margin="43,0,106,0" TextSubmitted="FontSizeCombo_TextSubmitted" ItemsSource="{x:Bind FontSizes}" Loaded="fontSizeComboBox_Loaded" SelectionChanged="FontSizeCombo_SelectionChanged">
-                        <ComboBoxItem>8</ComboBoxItem>
-                        <ComboBoxItem>9</ComboBoxItem>
-                        <ComboBoxItem>10</ComboBoxItem>
-                        <ComboBoxItem>11</ComboBoxItem>
-                        <ComboBoxItem>12</ComboBoxItem>
-                        <ComboBoxItem>14</ComboBoxItem>
-                        <ComboBoxItem>16</ComboBoxItem>
-                        <ComboBoxItem>18</ComboBoxItem>
-                        <ComboBoxItem>20</ComboBoxItem>
-                        <ComboBoxItem>22</ComboBoxItem>
-                        <ComboBoxItem>24</ComboBoxItem>
-                        <ComboBoxItem>26</ComboBoxItem>
-                        <ComboBoxItem>28</ComboBoxItem>
-                        <ComboBoxItem>36</ComboBoxItem>
-                        <ComboBoxItem>48</ComboBoxItem>
-                        <ComboBoxItem>72</ComboBoxItem>
-                    </ComboBox>
+                    <NumberBox
+x:Name="FontSizeBox"
+Maximum="150"
+Minimum="8"
+PlaceholderText="Font size"
+SpinButtonPlacementMode="Compact"
+ValueChanged="FontSizeBox_ValueChanged"
+Value="11"
+                        Grid.Column="4" Grid.ColumnSpan="2"/>
                     <SplitButton Style="{StaticResource PaintUIHorizontalSplitButton}" x:Name="fontcolorsplitbutton" Grid.Column="6" Content="&#xE8D3;" Margin="-38,0,0,0" Grid.Row="1" Width="77"  VerticalContentAlignment="Stretch" FontSize="20" Click="fontcolorsplitbutton_Click" Height="27" Padding="11,3,11,3" UseLayoutRounding="True" FontFamily="{ThemeResource SymbolThemeFontFamily}">
                         <SplitButton.Flyout>
                             <Flyout Placement="Bottom">
@@ -720,183 +710,58 @@ ColumnSpacing="12">
                     </SplitButton>
                     <SplitButton Style="{StaticResource PaintUIHorizontalSplitButton}" x:Name="fontbackgroundcolorsplitbutton" Grid.Column="6" Content="&#xE7E6;" Margin="43,0,0,0" Grid.Row="1" Width="77"  FontSize="20" Click="fontbackgroundcolorsplitbutton_Click" Height="27" Padding="11,3,11,3" FontFamily="{ThemeResource SymbolThemeFontFamily}">
                         <SplitButton.Flyout>
-                            <Flyout Placement="Bottom">
-                                <RelativePanel>
-                                    <VariableSizedWrapGrid x:Name="colorGrid2" Orientation="Vertical" MaximumRowsOrColumns="3">
-                                        <VariableSizedWrapGrid.Resources>
-                                            <Style TargetType="Rectangle">
-                                                <Setter Property="Width" Value="30"/>
-                                                <Setter Property="Height" Value="30"/>
-                                            </Style>
-
-                                            <Style TargetType="Button">
-                                                <Setter Property="Padding" Value="0"/>
-                                                <Setter Property="Width" Value="30"/>
-                                                <Setter Property="Height" Value="30"/>
-                                                <Setter Property="MinWidth" Value="0"/>
-                                                <Setter Property="MinHeight" Value="0"/>
-                                                <Setter Property="Margin" Value="2"/>
-                                                <Setter Property="CornerRadius" Value="15"/>
-                                                <Setter Property="Background"
-                                Value="Transparent" />
-                                                <Setter Property="BackgroundSizing"
-                                Value="OuterBorderEdge" />
-                                                <Setter Property="BorderBrush"
-                                Value="Transparent" />
-                                                <Setter Property="Padding"
-                                Value="0" />
-                                                <Setter Property="FontWeight"
-                                Value="Normal" />
-                                                <Setter Property="FontSize"
-                                Value="16" />
-
-
-                                            </Style>
-                                        </VariableSizedWrapGrid.Resources>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="Red" AutomationProperties.Name="Red">
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#ffff00"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
+                            <Flyout>
+                                <StackPanel>
+                                    <Grid >
+                                        <Button Background="DarkRed"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="Red"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="OrangeRed"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="IndianRed"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="PaleVioletRed"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="HotPink"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="Pink"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="LightPink"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="DarkGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top" Margin="0,50,0,0"  Click="HighlightButton_Click"/>
+                                        <Button Background="DarkOliveGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="Green"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="ForestGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="LimeGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="Lime"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="SpringGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="GreenYellow"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="DarkBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top" Margin="0,100,0,0"  Click="HighlightButton_Click"/>
+                                        <Button Background="DarkSlateBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="Blue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="CornflowerBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="DodgerBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="DeepSkyBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="LightSkyBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="LightBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="DarkOrange"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top" Margin="0,150,0,0"  Click="HighlightButton_Click"/>
+                                        <Button Background="Orange"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="Yellow"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="AntiqueWhite"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="LightGoldenrodYellow"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="LightYellow"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="WhiteSmoke"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="FloralWhite"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="Black"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top" Margin="0,200,0,0"  Click="HighlightButton_Click"/>
+                                        <Button Background="DimGray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="DarkGray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="Gray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="LightSlateGray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="LightGray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="White"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                        <Button Background="Transparent" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,200,0,0" VerticalAlignment="Top" Click="NullHighlightButton_Click">
+                                            <Border BorderBrush="Red" BorderThickness="1" Width="39" RenderTransformOrigin="0.5,0.5">
+                                                <Border.RenderTransform>
+                                                    <CompositeTransform Rotation="46.118"/>
+                                                </Border.RenderTransform>
+                                            </Border>
                                         </Button>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="Orange" AutomationProperties.Name="Orange">
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#ff0000"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="Yellow" AutomationProperties.Name="Yellow">
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#800000"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="Green" AutomationProperties.Name="Green">
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#00ff00"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="Blue" AutomationProperties.Name="Blue">
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#000080"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="Light Blue" AutomationProperties.Name="LightBlue">
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#808000"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="Indigo" AutomationProperties.Name="Indigo">
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#00ffff"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="Violet" AutomationProperties.Name="Violet" >
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#008080"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="Gray" AutomationProperties.Name="Gray">
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#808080"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="Beige" AutomationProperties.Name="Beige">
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#ff00ff"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="Black" AutomationProperties.Name="Black">
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#008000"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="White" AutomationProperties.Name="White">
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#c0c0c0"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="White" AutomationProperties.Name="White">
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#0000ff"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="White" AutomationProperties.Name="White">
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#800080"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                        <Button Click="BackColorButton_Click" ToolTipService.ToolTip="White" AutomationProperties.Name="White">
-                                            <Button.Content>
-                                                <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
-                                                    <Border CornerRadius="100" >
-                                                        <Rectangle Fill="#000000"/>
-                                                    </Border>
-                                                </Border>
-                                            </Button.Content>
-                                        </Button>
-                                    </VariableSizedWrapGrid>
-                                    <Button RelativePanel.Below="colorGrid2" Width="177" x:Name="NoColorButton" Margin="0,5,0,0" Style="{StaticResource PaintUIButtonStyle}" Height="35">
-                                        <Grid>
-                                            <TextBlock Text="No color" Margin="31,0,0,0" VerticalAlignment="Center" FontFamily="Segoe UI" HorizontalAlignment="Left" Height="24">
-                                            </TextBlock>
-                                            <Button x:Name="NoColorPreviewButton" Width="25" Height="25" Background="#FFCEE5FC" BorderBrush="#FF7EB5EB" IsEnabled="True" CornerRadius="1000"/>
-                                        </Grid>
-                                    </Button>
-                                </RelativePanel>
+                                    </Grid>
+                                    <ColorPicker x:Name="BackPicker" ColorChanged="BackPicker_ColorChanged" Color="#00000000" Margin="0,15,0,0"/>
+                                </StackPanel>
                             </Flyout>
                         </SplitButton.Flyout>
                     </SplitButton>

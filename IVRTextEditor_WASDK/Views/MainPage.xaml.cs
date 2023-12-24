@@ -4,6 +4,10 @@ using IVRTextEditor_WASDK;
 using Microsoft.Graphics.Canvas.Text;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Text;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Shapes;
+using Microsoft.UI;
 
 namespace IVRTextEditor_WASDK.Views;
 
@@ -210,16 +214,6 @@ public sealed partial class MainPage : Page
 
     }
 
-    private void fontcolorsplitbutton_Click(SplitButton sender, SplitButtonClickEventArgs args)
-    {
-
-    }
-
-    private void ColorButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
-    {
-
-    }
-
     private void BackColorButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
 
@@ -335,14 +329,32 @@ public sealed partial class MainPage : Page
 
     }
 
-    private void fontbackgroundcolorsplitbutton_Click(SplitButton sender, SplitButtonClickEventArgs args)
+    private void ColorButton_Click(object sender, RoutedEventArgs e)
     {
+        // Extract the color of the button that was clicked.
+        Button clickedColor = (Button)sender;
+        var borderone = (Border)clickedColor.Content;
+        var bordertwo = (Border)borderone.Child;
+        var rectangle = (Rectangle)bordertwo.Child;
+        var color = (rectangle.Fill as SolidColorBrush).Color;
+        Editor.Document.Selection.CharacterFormat.ForegroundColor = color;
+        //FontColorMarker.SetValue(ForegroundProperty, new SolidColorBrush(color));
+        Editor.Focus(FocusState.Keyboard);
+    }
 
+    private void fontcolorsplitbutton_Click(SplitButton sender, SplitButtonClickEventArgs args)
+    {
+        // If you see this, remind me to look into the splitbutton color applying logic
     }
 
     private void FontsCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-
+        ITextSelection ST = Editor.Document.Selection;
+        if (ST != null && FontsCombo.SelectedItem != null)
+        {
+            ST.CharacterFormat.Name = FontsCombo.SelectedItem.ToString();
+        }
+        else return;
     }
 
     private void ReplaceSelected_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
@@ -353,5 +365,63 @@ public sealed partial class MainPage : Page
     private void ReplaceAll_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
 
+    }
+
+    private void fontbackgroundcolorsplitbutton_Click(SplitButton sender, SplitButtonClickEventArgs args)
+    {
+
+    }
+
+    private void BackPicker_ColorChanged(object Sender, ColorChangedEventArgs EvArgs)
+    {
+        //Configure font highlight
+        if (!(Editor == null))
+        {
+            var ST = Editor.Document.Selection;
+            if (!(ST == null))
+            {
+                _ = ST.CharacterFormat;
+                var Br = new SolidColorBrush(BackPicker.Color);
+                var CF = BackPicker.Color;
+                ST.CharacterFormat.BackgroundColor = CF;
+            }
+        }
+    }
+
+    private void HighlightButton_Click(object Sender, RoutedEventArgs EvArgs)
+    {
+        //Configure font color
+        var BTN = Sender as Button;
+        ITextSelection ST = Editor.Document.Selection;
+        if (!(ST == null))
+        {
+            _ = ST.CharacterFormat.ForegroundColor;
+            Brush Br = BTN.Foreground;
+            //BackAccent.Foreground = Br;
+            ST.CharacterFormat.BackgroundColor = (BTN.Foreground as SolidColorBrush).Color;
+        }
+    }
+
+    private void NullHighlightButton_Click(object Sender, RoutedEventArgs EvArgs)
+    {
+        //Configure font color
+        ITextSelection ST = Editor.Document.Selection;
+        if (!(ST == null))
+        {
+            _ = ST.CharacterFormat.ForegroundColor;
+            //BackAccent.Foreground = new SolidColorBrush(Colors.Transparent);
+            ST.CharacterFormat.BackgroundColor = Colors.Transparent;
+        }
+    }
+
+    private void FontSizeBox_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
+    {
+        if (Editor != null && Editor.Document.Selection != null)
+        {
+            ITextSelection selectedText = Editor.Document.Selection;
+            ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
+            charFormatting.Size = (float)sender.Value;
+            selectedText.CharacterFormat = charFormatting;
+        }   
     }
 }
