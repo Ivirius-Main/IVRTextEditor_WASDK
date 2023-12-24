@@ -155,12 +155,44 @@ public sealed partial class MainPage : Page
 
     private void SubscriptButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-
+        ITextSelection ST = Editor.Document.Selection;
+        if (!(ST == null))
+        {
+            FormatEffect CF = ST.CharacterFormat.Subscript;
+            switch (CF)
+            {
+                case FormatEffect.Off:
+                    CF = FormatEffect.On;
+                    SubscriptButton.IsChecked = true;
+                    break;
+                default:
+                    CF = FormatEffect.Off;
+                    SubscriptButton.IsChecked = false;
+                    break;
+            }
+            ST.CharacterFormat.Subscript = CF;
+        }
     }
 
     private void SuperscriptButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-
+        ITextSelection ST = Editor.Document.Selection;
+        if (!(ST == null))
+        {
+            FormatEffect CF = ST.CharacterFormat.Superscript;
+            switch (CF)
+            {
+                case FormatEffect.Off:
+                    CF = FormatEffect.On;
+                    SuperscriptButton.IsChecked = true;
+                    break;
+                default:
+                    CF = FormatEffect.Off;
+                    SuperscriptButton.IsChecked = false;
+                    break;
+            }
+            ST.CharacterFormat.Superscript = CF;
+        }
     }
 
     private void FontSizeCombo_TextSubmitted(ComboBox sender, ComboBoxTextSubmittedEventArgs args)
