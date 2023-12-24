@@ -228,7 +228,7 @@ ColumnSpacing="12">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="32" />
                         <ColumnDefinition Width="32" />
-                        <ColumnDefinition Width="32" />
+                        <ColumnDefinition Width="40" />
                         <ColumnDefinition Width="32" />
                         <ColumnDefinition Width="77"/>
                         <ColumnDefinition Width="32" />
@@ -283,14 +283,53 @@ ColumnSpacing="12">
                     </ToggleButton>
 
 
-                    <ToggleSplitButton x:Name="UnderlineButton" Style="{StaticResource PaintUIHorizontalSplitButton}"
-                                  Content="&#xe8dc;"
-                                       FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                  Width="32"
-                                  Height="32"
-                                  Grid.Column="2"
-                                  Grid.Row="1" Click="UnderlineButton_Click">
-                    </ToggleSplitButton>
+                    <DropDownButton Style="{StaticResource PaintUIButtonStyle}" x:Name="UnderlineButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="40" Height="30" FontFamily="{ThemeResource SymbolThemeFontFamily}" FontSize="14" ToolTipService.ToolTip="Underline (Ctrl + U)" Background="{x:Null}" BorderBrush="{x:Null}" CornerRadius="4,4,4,4" Grid.Column="2" Grid.Row="1">
+                        <DropDownButton.Flyout>
+                            <MenuFlyout x:Name="UnderlineFlyout">
+                                <MenuFlyoutItem Text="None" Click="UnderlineButton_Click">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE106;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem Text="Single" Click="UnderlineButton_Click">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE004;"/>
+                                    </MenuFlyoutItem.Icon>
+                                    <MenuFlyoutItem.KeyboardAccelerators>
+                                        <KeyboardAccelerator IsEnabled="False" Modifiers="Control" Key="U"/>
+                                    </MenuFlyoutItem.KeyboardAccelerators>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem Text="Dash" Click="UnderlineButton_Click">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE004;&#xE004;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem Text="Dotted" Click="UnderlineButton_Click">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE10C;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem Text="Double" Click="UnderlineButton_Click">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE94E;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem Text="Thick" Click="UnderlineButton_Click">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE654;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                                <MenuFlyoutItem Text="Wave" Click="UnderlineButton_Click">
+                                    <MenuFlyoutItem.Icon>
+                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xF463;"/>
+                                    </MenuFlyoutItem.Icon>
+                                </MenuFlyoutItem>
+                            </MenuFlyout>
+                        </DropDownButton.Flyout>
+                        <Grid>
+                            <TextBlock TextWrapping="Wrap" Text="&#xE19A;" FontFamily="{ThemeResource SymbolThemeFontFamily}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+                        </Grid>
+                    </DropDownButton>
 
 
                     <ToggleButton x:Name="StrikethroughButton" Style="{StaticResource PaintUIToggleButtonStyle}"

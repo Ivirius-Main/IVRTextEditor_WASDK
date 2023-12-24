@@ -3,6 +3,7 @@ using IVRTextEditor_WASDK.ViewModels;
 using IVRTextEditor_WASDK;
 using Microsoft.Graphics.Canvas.Text;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Text;
 
 namespace IVRTextEditor_WASDK.Views;
 
@@ -79,22 +80,77 @@ public sealed partial class MainPage : Page
 
     private void BoldButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-
+        ITextSelection ST = Editor.Document.Selection;
+        if (ST != null)
+        {
+            FormatEffect CF = ST.CharacterFormat.Bold;
+            switch (CF)
+            {
+                case FormatEffect.Off:
+                    CF = FormatEffect.On;
+                    break;
+                default:
+                    CF = FormatEffect.Off;
+                    break;
+            }
+            ST.CharacterFormat.Bold = CF;
+        }
     }
 
     private void ItalicButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-
+        ITextSelection ST = Editor.Document.Selection;
+        if (ST != null)
+        {
+            FormatEffect CF = ST.CharacterFormat.Italic;
+            switch (CF)
+            {
+                case FormatEffect.Off:
+                    CF = FormatEffect.On;
+                    break;
+                default:
+                    CF = FormatEffect.Off;
+                    break;
+            }
+            ST.CharacterFormat.Italic = CF;
+        }
     }
 
-    private void UnderlineButton_Click(SplitButton sender, SplitButtonClickEventArgs args)
+    private void UnderlineButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-
+        var MFItem = (MenuFlyoutItem)sender;
+        ITextSelection ST = Editor.Document.Selection;
+        if (!(ST == null))
+        {
+            UnderlineType CF = ST.CharacterFormat.Underline;
+            if (MFItem.Text == "None") CF = UnderlineType.None;
+            if (MFItem.Text == "Single") CF = UnderlineType.Single;
+            if (MFItem.Text == "Dash") CF = UnderlineType.Dash;
+            if (MFItem.Text == "Dotted") CF = UnderlineType.Dotted;
+            if (MFItem.Text == "Double") CF = UnderlineType.Double;
+            if (MFItem.Text == "Thick") CF = UnderlineType.Thick;
+            if (MFItem.Text == "Wave") CF = UnderlineType.Wave;
+            ST.CharacterFormat.Underline = CF;
+        }
     }
 
     private void StrikethroughButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-
+        ITextSelection ST = Editor.Document.Selection;
+        if (ST != null)
+        {
+            FormatEffect CF = ST.CharacterFormat.Strikethrough;
+            switch (CF)
+            {
+                case FormatEffect.Off:
+                    CF = FormatEffect.On;
+                    break;
+                default:
+                    CF = FormatEffect.Off;
+                    break;
+            }
+            ST.CharacterFormat.Strikethrough = CF;
+        }
     }
 
     private void SubscriptButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
