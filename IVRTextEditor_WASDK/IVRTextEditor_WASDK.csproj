@@ -17,6 +17,8 @@
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Content Remove="Assets\Copy.png" />
+    <Content Remove="Assets\Cut.png" />
     <Content Remove="Assets\PasteIcon.png" />
   </ItemGroup>
   <ItemGroup>
