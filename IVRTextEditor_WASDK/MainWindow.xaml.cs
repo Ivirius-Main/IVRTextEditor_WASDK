@@ -94,7 +94,6 @@ namespace IVRTextEditor_WASDK
             TI.Content = F;
 
             TabbedView.Resources.TryAdd("TabViewItemHeaderBackgroundSelected", m_backdropController);
-            TabbedView.Resources.TryAdd("TabViewItem")
             TabbedView.TabItems.Add(TI);
             TabbedView.SelectedIndex = TabbedView.TabItems.IndexOf(TI);
             LoadBounds();
