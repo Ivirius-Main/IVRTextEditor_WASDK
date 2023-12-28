@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:CommunityToolkit.WinUI.Controls"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="ComboBoxItemTemplate">
@@ -17,225 +17,235 @@
             </RelativePanel>
         </Flyout>
 
+
     </Page.Resources>
 
     <RelativePanel x:Name="ContentArea">
+        <Grid x:Name="RibbonTabs" Background="Transparent" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+            <controls:Segmented>
+                <controls:SegmentedItem x:Name="HomeTab" Content="Home" IsSelected="True" ></controls:SegmentedItem>
+                <controls:SegmentedItem x:Name="HelpTab" Content="Help"></controls:SegmentedItem>
+            </controls:Segmented>
+        </Grid>
 
         <Grid x:Name="ribbongrid" Background="{ThemeResource LayerOnMicaBaseAltFillColorDefault}"
               BorderBrush="{ThemeResource RibbonBorder}"
               BorderThickness="0,1"
               Padding="4"
-              Grid.Row="3" DataContext="{x:Bind}" Height="130" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="137"/>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="0" />
-            </Grid.ColumnDefinitions>
+              Grid.Row="3" DataContext="{x:Bind}" Height="130" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="RibbonTabs"
+              >
+            <Grid x:Name="ribbonhome">
 
-            <Grid x:Name="clipcol" Visibility="Visible" BorderBrush="{ThemeResource RibbonColumnBorder}"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="137"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="0" />
+                </Grid.ColumnDefinitions>
+
+                <Grid x:Name="clipcol" Visibility="Visible" BorderBrush="{ThemeResource RibbonColumnBorder}"
                   BorderThickness="0,0,1,0"
                   Padding="12">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="72" />
-                    <RowDefinition Height="24" />
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="72" />
+                        <RowDefinition Height="24" />
+                    </Grid.RowDefinitions>
 
-                <Grid.Children>
-                    <TextBlock Text="Clipboard"
+                    <Grid.Children>
+                        <TextBlock Text="Clipboard"
                            Style="{StaticResource ColumnDescriptionTextblockStyle}"
                            Grid.Row="1" />
-                    <Border x:Name="CollapsedClipboardToolbar" Visibility="Visible" />
-                    <Grid>
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="72" />
-                            <RowDefinition Height="24" />
-                        </Grid.RowDefinitions>
-
-                        <Grid x:Name="ClipbrdHost"
-ColumnSpacing="12">
+                        <Border x:Name="CollapsedClipboardToolbar" Visibility="Visible" />
+                        <Grid>
 
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="1*" />
-                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="72" />
+                                <RowDefinition Height="24" />
                             </Grid.RowDefinitions>
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                            <Grid x:Name="ClipbrdHost"
+ColumnSpacing="12">
 
-                            <SplitButton Style="{StaticResource PaintUISplitButtonStyle}"
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*" />
+                                    <RowDefinition Height="1*" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <SplitButton Style="{StaticResource PaintUISplitButtonStyle}"
                 Grid.RowSpan="2"
                 Grid.Column="0"
                 Click="Paste_Click">
-                                <SplitButton.Flyout>
-                                    <MenuFlyout Placement="Bottom">
-                                        <MenuFlyoutItem Text="Paste">
-                                            <MenuFlyoutItem.Icon>
-                                                <FontIcon Glyph="&#xe77f;" />
-                                            </MenuFlyoutItem.Icon>
-                                        </MenuFlyoutItem>
-                                        <MenuFlyoutItem Text="Paste special">
-                                            <MenuFlyoutItem.Icon>
-                                                <FontIcon Glyph="&#xf0e3;" />
-                                            </MenuFlyoutItem.Icon>
-                                        </MenuFlyoutItem>
-                                    </MenuFlyout>
-                                </SplitButton.Flyout>
-                                <Image x:Name="pasteimg" Width="24"
+                                    <SplitButton.Flyout>
+                                        <MenuFlyout Placement="Bottom">
+                                            <MenuFlyoutItem Text="Paste">
+                                                <MenuFlyoutItem.Icon>
+                                                    <FontIcon Glyph="&#xe77f;" />
+                                                </MenuFlyoutItem.Icon>
+                                            </MenuFlyoutItem>
+                                            <MenuFlyoutItem Text="Paste special">
+                                                <MenuFlyoutItem.Icon>
+                                                    <FontIcon Glyph="&#xf0e3;" />
+                                                </MenuFlyoutItem.Icon>
+                                            </MenuFlyoutItem>
+                                        </MenuFlyout>
+                                    </SplitButton.Flyout>
+                                    <Image x:Name="pasteimg" Width="24"
          Height="24"
          HorizontalAlignment="Center"
          VerticalAlignment="Center"
           Source="/Assets/PasteIcon.png" />
-                            </SplitButton>
+                                </SplitButton>
 
-                            <Button Grid.Row="0"
+                                <Button Grid.Row="0"
       Grid.Column="1"
       Width="32"
       Height="32"
       Style="{StaticResource PaintUIButtonStyle}"
       Click="Cut_Click">
-                                <Image x:Name="cutimg" Width="16"
+                                    <Image x:Name="cutimg" Width="16"
          Height="16"
          HorizontalAlignment="Center"
          VerticalAlignment="Center"
          Source="/Assets/Cut.png" />
-                            </Button>
+                                </Button>
 
-                            <Button Style="{StaticResource PaintUIButtonStyle}"
+                                <Button Style="{StaticResource PaintUIButtonStyle}"
       Grid.Row="1"
       Grid.Column="1"
       Width="32"
       Height="32"
       Click="Copy_Click">
-                                <Image x:Name="copyimg" Width="16"
+                                    <Image x:Name="copyimg" Width="16"
          Height="16"
                
          HorizontalAlignment="Center"
          VerticalAlignment="Center"
          Source="/Assets/Copy.png" />
-                            </Button>
+                                </Button>
+
+                            </Grid>
 
                         </Grid>
+                    </Grid.Children>
+                </Grid>
 
-                    </Grid>
-                </Grid.Children>
-            </Grid>
-
-            <Grid BorderBrush="{ThemeResource RibbonColumnBorder}"
+                <Grid BorderBrush="{ThemeResource RibbonColumnBorder}"
                   BorderThickness="0,0,1,0"
                   Padding="12" x:Name="ClipboardFull" Visibility="Collapsed">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="72" />
-                    <RowDefinition Height="24" />
-                </Grid.RowDefinitions>
-
-                <Grid x:Name="ClipbrdHostfull"
-                      ColumnSpacing="12">
-
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="72" />
+                        <RowDefinition Height="24" />
                     </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                    <Grid x:Name="ClipbrdHostfull"
+                      ColumnSpacing="12">
 
-                    <SplitButton Style="{StaticResource PaintUISplitButtonStyle}"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <SplitButton Style="{StaticResource PaintUISplitButtonStyle}"
                                       Grid.RowSpan="2"
                                       Grid.Column="0"
                                       Click="Paste_Click">
-                        <SplitButton.Flyout>
-                            <MenuFlyout Placement="Bottom">
-                                <MenuFlyoutItem Text="Paste">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon Glyph="&#xe77f;" />
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Paste special">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon Glyph="&#xf0e3;" />
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                            </MenuFlyout>
-                        </SplitButton.Flyout>
-                        <Image x:Name="pasteimgfull" Width="24"
+                            <SplitButton.Flyout>
+                                <MenuFlyout Placement="Bottom">
+                                    <MenuFlyoutItem Text="Paste">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon Glyph="&#xe77f;" />
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem Text="Paste special">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon Glyph="&#xf0e3;" />
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                </MenuFlyout>
+                            </SplitButton.Flyout>
+                            <Image x:Name="pasteimgfull" Width="24"
                                Height="24"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Source="{ThemeResource ResourceKey=Paste}" />
-                    </SplitButton>
+                        </SplitButton>
 
-                    <Button Grid.Row="0"
+                        <Button Grid.Row="0"
                             Grid.Column="1"
                             Width="32"
                             Height="32"
                             Style="{StaticResource PaintUIButtonStyle}"
                             Click="Cut_Click">
-                        <Image x:Name="cutimgfull" Width="16"
+                            <Image x:Name="cutimgfull" Width="16"
                                Height="16"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Source="{ThemeResource ResourceKey=Cut}" />
-                    </Button>
+                        </Button>
 
-                    <Button Style="{StaticResource PaintUIButtonStyle}"
+                        <Button Style="{StaticResource PaintUIButtonStyle}"
                             Grid.Row="1"
                             Grid.Column="1"
                             Width="32"
                             Height="32"
                             Click="Copy_Click">
-                        <Image x:Name="copyimgfull" Width="16"
+                            <Image x:Name="copyimgfull" Width="16"
                                Height="16"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Source="{ThemeResource ResourceKey=Copy}" />
-                    </Button>
+                        </Button>
 
-                </Grid>
+                    </Grid>
 
-                <TextBlock Text="Clipboard"
+                    <TextBlock Text="Clipboard"
                            Style="{StaticResource ColumnDescriptionTextblockStyle}"
                            Grid.Row="1" VerticalAlignment="Bottom" />
 
-            </Grid>
-            <Grid BorderBrush="{ThemeResource RibbonColumnBorder}"
+                </Grid>
+                <Grid BorderBrush="{ThemeResource RibbonColumnBorder}"
                   BorderThickness="0,0,1,0"
                   Padding="12"
                   Grid.Column="1">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="72" />
-                    <RowDefinition Height="24" />
-                </Grid.RowDefinitions>
-
-                <Grid ColumnSpacing="8">
-
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="72" />
+                        <RowDefinition Height="24" />
                     </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="32" />
-                        <ColumnDefinition Width="32" />
-                        <ColumnDefinition Width="40" />
-                        <ColumnDefinition Width="32" />
-                        <ColumnDefinition Width="77"/>
-                        <ColumnDefinition Width="32" />
-                        <ColumnDefinition Width="120" />
-                    </Grid.ColumnDefinitions>
+                    <Grid ColumnSpacing="8">
 
-                    <Button Style="{StaticResource PaintUIButtonStyle}"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32" />
+                            <ColumnDefinition Width="32" />
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="32" />
+                            <ColumnDefinition Width="77"/>
+                            <ColumnDefinition Width="32" />
+                            <ColumnDefinition Width="120" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Style="{StaticResource PaintUIButtonStyle}"
                             Content="&#xe8d2;"
                             Width="32"
                             MinWidth="32"
@@ -246,7 +256,7 @@ ColumnSpacing="12">
                             Visibility="Collapsed"/>
 
 
-                    <Button x:Name="fontlarger" Style="{StaticResource PaintUIButtonStyle}"
+                        <Button x:Name="fontlarger" Style="{StaticResource PaintUIButtonStyle}"
                             Content="&#xe8e8;"
                             Width="32"
                             MinWidth="32"
@@ -255,7 +265,7 @@ ColumnSpacing="12">
                             Grid.Column="6"
                             FontSize="20" Click="IncreaseFontSize_Click" Margin="19,0,0,0" RenderTransformOrigin="0.836,0.508"/>
 
-                    <Button x:Name="fontsmaller" Style="{StaticResource PaintUIButtonStyle}"
+                        <Button x:Name="fontsmaller" Style="{StaticResource PaintUIButtonStyle}"
                             Content="&#xe8e7;"
                             Width="32"
                             MinWidth="32"
@@ -265,82 +275,82 @@ ColumnSpacing="12">
                             FontSize="20" Click="DecreaseFontSize_Click" Margin="57,0,0,0" RenderTransformOrigin="0.57,0.492"/>
 
 
-                    <ToggleButton x:Name="BoldButton" Style="{StaticResource PaintUIToggleButtonStyle}"
+                        <ToggleButton x:Name="BoldButton" Style="{StaticResource PaintUIToggleButtonStyle}"
                                   Content="&#xe8dd;"
                                   Width="32"
                                   Height="32"
                                   Grid.Column="0"
                                   Grid.Row="1" Click="BoldButton_Click">
-                    </ToggleButton>
+                        </ToggleButton>
 
 
-                    <ToggleButton x:Name="ItalicButton" Style="{StaticResource PaintUIToggleButtonStyle}"
+                        <ToggleButton x:Name="ItalicButton" Style="{StaticResource PaintUIToggleButtonStyle}"
                                   Content="&#xe8db;"
                                   Width="32"
                                   Height="32"
                                   Grid.Column="1"
                                   Grid.Row="1" Click="ItalicButton_Click">
-                    </ToggleButton>
+                        </ToggleButton>
 
 
-                    <DropDownButton Style="{StaticResource PaintUIButtonStyle}" x:Name="UnderlineButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="40" Height="30" FontFamily="{ThemeResource SymbolThemeFontFamily}" FontSize="14" ToolTipService.ToolTip="Underline (Ctrl + U)" Background="{x:Null}" BorderBrush="{x:Null}" CornerRadius="4,4,4,4" Grid.Column="2" Grid.Row="1">
-                        <DropDownButton.Flyout>
-                            <MenuFlyout x:Name="UnderlineFlyout">
-                                <MenuFlyoutItem Text="None" Click="UnderlineButton_Click">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE106;"/>
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Single" Click="UnderlineButton_Click">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE004;"/>
-                                    </MenuFlyoutItem.Icon>
-                                    <MenuFlyoutItem.KeyboardAccelerators>
-                                        <KeyboardAccelerator IsEnabled="False" Modifiers="Control" Key="U"/>
-                                    </MenuFlyoutItem.KeyboardAccelerators>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Dash" Click="UnderlineButton_Click">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE004;&#xE004;"/>
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Dotted" Click="UnderlineButton_Click">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE10C;"/>
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Double" Click="UnderlineButton_Click">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE94E;"/>
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Thick" Click="UnderlineButton_Click">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE654;"/>
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Wave" Click="UnderlineButton_Click">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xF463;"/>
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                            </MenuFlyout>
-                        </DropDownButton.Flyout>
-                        <Grid>
-                            <TextBlock TextWrapping="Wrap" Text="&#xE19A;" FontFamily="{ThemeResource SymbolThemeFontFamily}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
-                        </Grid>
-                    </DropDownButton>
+                        <DropDownButton Style="{StaticResource PaintUIButtonStyle}" x:Name="UnderlineButton" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="40" Height="30" FontFamily="{ThemeResource SymbolThemeFontFamily}" FontSize="14" ToolTipService.ToolTip="Underline (Ctrl + U)" Background="{x:Null}" BorderBrush="{x:Null}" CornerRadius="4,4,4,4" Grid.Column="2" Grid.Row="1">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout x:Name="UnderlineFlyout">
+                                    <MenuFlyoutItem Text="None" Click="UnderlineButton_Click">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE106;"/>
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem Text="Single" Click="UnderlineButton_Click">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE004;"/>
+                                        </MenuFlyoutItem.Icon>
+                                        <MenuFlyoutItem.KeyboardAccelerators>
+                                            <KeyboardAccelerator IsEnabled="False" Modifiers="Control" Key="U"/>
+                                        </MenuFlyoutItem.KeyboardAccelerators>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem Text="Dash" Click="UnderlineButton_Click">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE004;&#xE004;"/>
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem Text="Dotted" Click="UnderlineButton_Click">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE10C;"/>
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem Text="Double" Click="UnderlineButton_Click">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE94E;"/>
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem Text="Thick" Click="UnderlineButton_Click">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE654;"/>
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem Text="Wave" Click="UnderlineButton_Click">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xF463;"/>
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                            <Grid>
+                                <TextBlock TextWrapping="Wrap" Text="&#xE19A;" FontFamily="{ThemeResource SymbolThemeFontFamily}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+                            </Grid>
+                        </DropDownButton>
 
 
-                    <ToggleButton x:Name="StrikethroughButton" Style="{StaticResource PaintUIToggleButtonStyle}"
+                        <ToggleButton x:Name="StrikethroughButton" Style="{StaticResource PaintUIToggleButtonStyle}"
                                   Content="&#xede0;"
                                   Width="32"
                                   Height="32"
                                   Grid.Column="3"
                                   Grid.Row="1" Click="StrikethroughButton_Click">
-                    </ToggleButton>
+                        </ToggleButton>
 
-                    <ToggleButton x:Name="SubscriptButton" Style="{StaticResource PaintUIToggleButtonStyle}"
+                        <ToggleButton x:Name="SubscriptButton" Style="{StaticResource PaintUIToggleButtonStyle}"
                                  Padding="0"
                                  Width="32"
                                  MinWidth="32"
@@ -349,11 +359,11 @@ ColumnSpacing="12">
                                  Grid.Column="4"
                                  Grid.Row="1"
                                  Margin="2,0,0,0" Grid.ColumnSpan="2" Click="SubscriptButton_Click" >
-                        <PathIcon Data="M16.488 4.43a.75.75 0 0 1 .082 1.058L10.988 12l5.032 5.871c-.302.41-.555.906-.682 1.51L10 13.151l-5.43 6.336a.75.75 0 0 1-1.14-.976L9.013 12 3.431 5.488a.75.75 0 0 1 1.139-.976L10 10.848l5.43-6.336a.75.75 0 0 1 1.058-.081ZM17.75 15.523c0-.528.444-1.023.986-1.023.407 0 .735.19.893.434.136.21.218.566-.093 1.095-.15.255-.376.482-.682.724-.152.12-.316.237-.493.363l-.074.052c-.152.107-.315.222-.472.34-.744.56-1.565 1.346-1.565 2.742 0 .414.336.75.75.75h3.451a.75.75 0 0 0 0-1.5h-2.513c.16-.282.423-.525.779-.793.137-.103.279-.203.432-.312l.078-.054c.178-.127.37-.264.557-.41.372-.295.76-.658 1.045-1.142.557-.948.546-1.921.058-2.672C20.42 13.4 19.59 13 18.736 13c-1.478 0-2.486 1.278-2.486 2.523a.75.75 0 0 0 1.5 0Z" Height="24" Width="24"/>
+                            <PathIcon Data="M16.488 4.43a.75.75 0 0 1 .082 1.058L10.988 12l5.032 5.871c-.302.41-.555.906-.682 1.51L10 13.151l-5.43 6.336a.75.75 0 0 1-1.14-.976L9.013 12 3.431 5.488a.75.75 0 0 1 1.139-.976L10 10.848l5.43-6.336a.75.75 0 0 1 1.058-.081ZM17.75 15.523c0-.528.444-1.023.986-1.023.407 0 .735.19.893.434.136.21.218.566-.093 1.095-.15.255-.376.482-.682.724-.152.12-.316.237-.493.363l-.074.052c-.152.107-.315.222-.472.34-.744.56-1.565 1.346-1.565 2.742 0 .414.336.75.75.75h3.451a.75.75 0 0 0 0-1.5h-2.513c.16-.282.423-.525.779-.793.137-.103.279-.203.432-.312l.078-.054c.178-.127.37-.264.557-.41.372-.295.76-.658 1.045-1.142.557-.948.546-1.921.058-2.672C20.42 13.4 19.59 13 18.736 13c-1.478 0-2.486 1.278-2.486 2.523a.75.75 0 0 0 1.5 0Z" Height="24" Width="24"/>
 
-                    </ToggleButton>
+                        </ToggleButton>
 
-                    <ToggleButton x:Name="SuperscriptButton" Style="{StaticResource PaintUIToggleButtonStyle}"
+                        <ToggleButton x:Name="SuperscriptButton" Style="{StaticResource PaintUIToggleButtonStyle}"
                                  Padding="0"
                                  Width="32"
                                  MinWidth="32"
@@ -362,18 +372,18 @@ ColumnSpacing="12">
                                  Grid.Column="5"
                                  Grid.Row="1"
                                  Margin="-40,0,0,0" Grid.ColumnSpan="2" Click="SuperscriptButton_Click" >
-                        <PathIcon Data="M18.736 3.5c-.543 0-.986.495-.986 1.023a.75.75 0 0 1-1.5 0C16.25 3.278 17.258 2 18.736 2c.855 0 1.684.4 2.15 1.117.49.751.5 1.724-.057 2.672-.285.484-.673.847-1.045 1.141-.187.148-.379.284-.557.41l-.078.056a17.45 17.45 0 0 0-.432.311c-.356.268-.619.511-.78.793h2.514a.75.75 0 0 1 0 1.5H17a.75.75 0 0 1-.75-.75c0-1.396.821-2.182 1.565-2.741.157-.119.32-.234.472-.341l.074-.052c.177-.126.34-.243.493-.363.306-.242.532-.47.682-.724.31-.53.229-.886.093-1.094-.158-.244-.486-.435-.893-.435Z M15.26 4.71c.06.562.385 1.043.847 1.318L10.987 12l5.583 6.512a.75.75 0 1 1-1.14.976L10 13.152l-5.43 6.336a.75.75 0 0 1-1.14-.976L9.013 12 3.431 5.488a.75.75 0 1 1 1.139-.976L10 10.848l5.26-6.137Z" Height="24" Width="24"/>
+                            <PathIcon Data="M18.736 3.5c-.543 0-.986.495-.986 1.023a.75.75 0 0 1-1.5 0C16.25 3.278 17.258 2 18.736 2c.855 0 1.684.4 2.15 1.117.49.751.5 1.724-.057 2.672-.285.484-.673.847-1.045 1.141-.187.148-.379.284-.557.41l-.078.056a17.45 17.45 0 0 0-.432.311c-.356.268-.619.511-.78.793h2.514a.75.75 0 0 1 0 1.5H17a.75.75 0 0 1-.75-.75c0-1.396.821-2.182 1.565-2.741.157-.119.32-.234.472-.341l.074-.052c.177-.126.34-.243.493-.363.306-.242.532-.47.682-.724.31-.53.229-.886.093-1.094-.158-.244-.486-.435-.893-.435Z M15.26 4.71c.06.562.385 1.043.847 1.318L10.987 12l5.583 6.512a.75.75 0 1 1-1.14.976L10 13.152l-5.43 6.336a.75.75 0 0 1-1.14-.976L9.013 12 3.431 5.488a.75.75 0 1 1 1.139-.976L10 10.848l5.26-6.137Z" Height="24" Width="24"/>
 
-                    </ToggleButton>
-                    <ComboBox x:Name="FontsCombo" ItemsSource="{x:Bind Fonts}" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" IsEditable="True" PlaceholderText="Font" SelectionChanged="FontsCombo_SelectionChanged" Height="33">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate x:DataType="x:String">
-                                <TextBlock FontFamily="{x:Bind}" Text="{x:Bind}" />
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                        </ToggleButton>
+                        <ComboBox x:Name="FontsCombo" ItemsSource="{x:Bind Fonts}" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" IsEditable="True" PlaceholderText="Font" SelectionChanged="FontsCombo_SelectionChanged" Height="33">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <TextBlock FontFamily="{x:Bind}" Text="{x:Bind}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
 
-                    <NumberBox
+                        <NumberBox
 x:Name="FontSizeBox"
 Maximum="150"
 Minimum="8"
@@ -384,42 +394,42 @@ Value="11"
                         Height="33"
                         Margin="0, -4, 0, 0"
                         Grid.Column="4" Grid.ColumnSpan="2"/>
-                    <SplitButton Style="{StaticResource PaintUIHorizontalSplitButton}" x:Name="fontcolorsplitbutton" Grid.Column="6" Content="&#xE8D3;" Margin="-38,0,0,0" Grid.Row="1" Width="77"  VerticalContentAlignment="Stretch" FontSize="20" Click="fontcolorsplitbutton_Click" Height="27" Padding="11,3,11,3" UseLayoutRounding="True" FontFamily="{ThemeResource SymbolThemeFontFamily}">
-                        <SplitButton.Flyout>
-                            <Flyout Placement="Bottom">
-                                <RelativePanel>
-                                    <VariableSizedWrapGrid x:Name="colorGrid" MaximumRowsOrColumns="6" RelativePanel.Below="Autobutton" Width="155" Margin="0,3,0,3">
-                                        <VariableSizedWrapGrid.Resources>
-                                            <Style TargetType="Rectangle">
-                                                <Setter Property="Width" Value="25"/>
-                                                <Setter Property="Height" Value="25"/>
-                                            </Style>
+                        <SplitButton Style="{StaticResource PaintUIHorizontalSplitButton}" x:Name="fontcolorsplitbutton" Grid.Column="6" Content="&#xE8D3;" Margin="-38,0,0,0" Grid.Row="1" Width="77"  VerticalContentAlignment="Stretch" FontSize="20" Click="fontcolorsplitbutton_Click" Height="27" Padding="11,3,11,3" UseLayoutRounding="True" FontFamily="{ThemeResource SymbolThemeFontFamily}">
+                            <SplitButton.Flyout>
+                                <Flyout Placement="Bottom">
+                                    <RelativePanel>
+                                        <VariableSizedWrapGrid x:Name="colorGrid" MaximumRowsOrColumns="6" RelativePanel.Below="Autobutton" Width="155" Margin="0,3,0,3">
+                                            <VariableSizedWrapGrid.Resources>
+                                                <Style TargetType="Rectangle">
+                                                    <Setter Property="Width" Value="25"/>
+                                                    <Setter Property="Height" Value="25"/>
+                                                </Style>
 
-                                            <Style TargetType="Button">
-                                                <Setter Property="Padding" Value="0"/>
-                                                <Setter Property="Width" Value="25"/>
-                                                <Setter Property="Height" Value="25"/>
-                                                <Setter Property="MinWidth" Value="0"/>
-                                                <Setter Property="MinHeight" Value="0"/>
-                                                <Setter Property="Margin" Value="3"/>
-                                                <Setter Property="CornerRadius" Value="15"/>
-                                                <Setter Property="Background"
+                                                <Style TargetType="Button">
+                                                    <Setter Property="Padding" Value="0"/>
+                                                    <Setter Property="Width" Value="25"/>
+                                                    <Setter Property="Height" Value="25"/>
+                                                    <Setter Property="MinWidth" Value="0"/>
+                                                    <Setter Property="MinHeight" Value="0"/>
+                                                    <Setter Property="Margin" Value="3"/>
+                                                    <Setter Property="CornerRadius" Value="15"/>
+                                                    <Setter Property="Background"
                                 Value="Transparent" />
-                                                <Setter Property="BackgroundSizing"
+                                                    <Setter Property="BackgroundSizing"
                                 Value="OuterBorderEdge" />
-                                                <Setter Property="BorderBrush"
+                                                    <Setter Property="BorderBrush"
                                 Value="Transparent" />
-                                                <Setter Property="Padding"
+                                                    <Setter Property="Padding"
                                 Value="0" />
-                                                <Setter Property="FontWeight"
+                                                    <Setter Property="FontWeight"
                                 Value="Normal" />
-                                                <Setter Property="FontSize"
+                                                    <Setter Property="FontSize"
                                 Value="16" />
 
 
-                                            </Style>
-                                        </VariableSizedWrapGrid.Resources>
-                                        <Button Click="ColorButton_Click" ToolTipService.ToolTip="Red">
+                                                </Style>
+                                            </VariableSizedWrapGrid.Resources>
+                                            <Button Click="ColorButton_Click" ToolTipService.ToolTip="Red">
                                                 <Button.Content>
                                                     <Border CornerRadius="100" BorderBrush="#FFB7B7B7" BorderThickness="1" >
                                                         <Border CornerRadius="100" >
@@ -689,120 +699,120 @@ Value="11"
                                                     </Border>
                                                 </Button.Content>
                                             </Button>
-                                    </VariableSizedWrapGrid>
-                                    <Button Style="{StaticResource PaintUIButtonStyle}" Flyout="{StaticResource myColorPickerFlyout}" RelativePanel.Below="colorGrid" Width="154" x:Name="colorPickerButton" FontFamily="Segoe UI" FontSize="11" Height="34">
-                                        <Button.Content>
-                                            <Grid>
-                                                <TextBlock Text="More colors..." Margin="25,0,0,0"></TextBlock>
-                                                <FontIcon Glyph="" HorizontalAlignment="Left" FontSize="16"></FontIcon>
-                                            </Grid>
-                                        </Button.Content>
-                                    </Button>
-                                    <ToggleButton Width="155" x:Name="Autobutton" Style="{StaticResource PaintUIToggleButtonStyle}" FontFamily="Segoe UI" Height="35">
-                                        <ToggleButton.Content>
-                                            <Grid>
-                                                <TextBlock Text="Automatic" Margin="25,0,0,0" FontSize="11"></TextBlock>
-                                                <FontIcon Glyph="" HorizontalAlignment="Left" FontSize="16"></FontIcon>
-                                            </Grid>
-                                        </ToggleButton.Content>
-                                    </ToggleButton>
-                                </RelativePanel>
-                            </Flyout>
-                        </SplitButton.Flyout>
-                    </SplitButton>
-                    <SplitButton Style="{StaticResource PaintUIHorizontalSplitButton}" x:Name="fontbackgroundcolorsplitbutton" Grid.Column="6" Content="&#xE7E6;" Margin="43,0,0,0" Grid.Row="1" Width="77"  FontSize="20" Click="fontbackgroundcolorsplitbutton_Click" Height="27" Padding="11,3,11,3" FontFamily="{ThemeResource SymbolThemeFontFamily}">
-                        <SplitButton.Flyout>
-                            <Flyout>
-                                <StackPanel>
-                                    <Grid >
-                                        <Button Background="DarkRed"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="Red"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="OrangeRed"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="IndianRed"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="PaleVioletRed"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="HotPink"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="Pink"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="LightPink"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="DarkGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top" Margin="0,50,0,0"  Click="HighlightButton_Click"/>
-                                        <Button Background="DarkOliveGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="Green"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="ForestGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="LimeGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="Lime"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="SpringGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="GreenYellow"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="DarkBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top" Margin="0,100,0,0"  Click="HighlightButton_Click"/>
-                                        <Button Background="DarkSlateBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="Blue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="CornflowerBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="DodgerBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="DeepSkyBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="LightSkyBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="LightBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="DarkOrange"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top" Margin="0,150,0,0"  Click="HighlightButton_Click"/>
-                                        <Button Background="Orange"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="Yellow"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="AntiqueWhite"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="LightGoldenrodYellow"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="LightYellow"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="WhiteSmoke"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="FloralWhite"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="Black"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top" Margin="0,200,0,0"  Click="HighlightButton_Click"/>
-                                        <Button Background="DimGray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="DarkGray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="Gray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="LightSlateGray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="LightGray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="White"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
-                                        <Button Background="Transparent" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,200,0,0" VerticalAlignment="Top" Click="NullHighlightButton_Click">
-                                            <Border BorderBrush="Red" BorderThickness="1" Width="39" RenderTransformOrigin="0.5,0.5">
-                                                <Border.RenderTransform>
-                                                    <CompositeTransform Rotation="46.118"/>
-                                                </Border.RenderTransform>
-                                            </Border>
+                                        </VariableSizedWrapGrid>
+                                        <Button Style="{StaticResource PaintUIButtonStyle}" Flyout="{StaticResource myColorPickerFlyout}" RelativePanel.Below="colorGrid" Width="154" x:Name="colorPickerButton" FontFamily="Segoe UI" FontSize="11" Height="34">
+                                            <Button.Content>
+                                                <Grid>
+                                                    <TextBlock Text="More colors..." Margin="25,0,0,0"></TextBlock>
+                                                    <FontIcon Glyph="" HorizontalAlignment="Left" FontSize="16"></FontIcon>
+                                                </Grid>
+                                            </Button.Content>
                                         </Button>
-                                    </Grid>
-                                    <ColorPicker x:Name="BackPicker" ColorChanged="BackPicker_ColorChanged" Color="#00000000" Margin="0,15,0,0"/>
-                                </StackPanel>
-                            </Flyout>
-                        </SplitButton.Flyout>
-                    </SplitButton>
+                                        <ToggleButton Width="155" x:Name="Autobutton" Style="{StaticResource PaintUIToggleButtonStyle}" FontFamily="Segoe UI" Height="35">
+                                            <ToggleButton.Content>
+                                                <Grid>
+                                                    <TextBlock Text="Automatic" Margin="25,0,0,0" FontSize="11"></TextBlock>
+                                                    <FontIcon Glyph="" HorizontalAlignment="Left" FontSize="16"></FontIcon>
+                                                </Grid>
+                                            </ToggleButton.Content>
+                                        </ToggleButton>
+                                    </RelativePanel>
+                                </Flyout>
+                            </SplitButton.Flyout>
+                        </SplitButton>
+                        <SplitButton Style="{StaticResource PaintUIHorizontalSplitButton}" x:Name="fontbackgroundcolorsplitbutton" Grid.Column="6" Content="&#xE7E6;" Margin="43,0,0,0" Grid.Row="1" Width="77"  FontSize="20" Click="fontbackgroundcolorsplitbutton_Click" Height="27" Padding="11,3,11,3" FontFamily="{ThemeResource SymbolThemeFontFamily}">
+                            <SplitButton.Flyout>
+                                <Flyout>
+                                    <StackPanel>
+                                        <Grid >
+                                            <Button Background="DarkRed"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="Red"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="OrangeRed"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="IndianRed"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="PaleVioletRed"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="HotPink"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="Pink"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="LightPink"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,0,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="DarkGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top" Margin="0,50,0,0"  Click="HighlightButton_Click"/>
+                                            <Button Background="DarkOliveGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="Green"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="ForestGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="LimeGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="Lime"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="SpringGreen"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="GreenYellow"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,50,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="DarkBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top" Margin="0,100,0,0"  Click="HighlightButton_Click"/>
+                                            <Button Background="DarkSlateBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="Blue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="CornflowerBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="DodgerBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="DeepSkyBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="LightSkyBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="LightBlue"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,100,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="DarkOrange"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top" Margin="0,150,0,0"  Click="HighlightButton_Click"/>
+                                            <Button Background="Orange"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="Yellow"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="AntiqueWhite"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="LightGoldenrodYellow"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="LightYellow"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="WhiteSmoke"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="FloralWhite"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,150,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="Black"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" VerticalAlignment="Top" Margin="0,200,0,0"  Click="HighlightButton_Click"/>
+                                            <Button Background="DimGray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="50,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="DarkGray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="100,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="Gray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="150,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="LightSlateGray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="200,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="LightGray"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="250,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="White"  FontFamily="{ThemeResource SymbolThemeFontFamily}" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="300,200,0,0" VerticalAlignment="Top"  Click="HighlightButton_Click"/>
+                                            <Button Background="Transparent" Width="40" Height="40"  FontSize="36" Padding="0,0,0,0" Margin="350,200,0,0" VerticalAlignment="Top" Click="NullHighlightButton_Click">
+                                                <Border BorderBrush="Red" BorderThickness="1" Width="39" RenderTransformOrigin="0.5,0.5">
+                                                    <Border.RenderTransform>
+                                                        <CompositeTransform Rotation="46.118"/>
+                                                    </Border.RenderTransform>
+                                                </Border>
+                                            </Button>
+                                        </Grid>
+                                        <ColorPicker x:Name="BackPicker" ColorChanged="BackPicker_ColorChanged" Color="#00000000" Margin="0,15,0,0"/>
+                                    </StackPanel>
+                                </Flyout>
+                            </SplitButton.Flyout>
+                        </SplitButton>
 
 
-                </Grid>
+                    </Grid>
 
-                <TextBlock Text="Font"
+                    <TextBlock Text="Font"
                            Style="{StaticResource ColumnDescriptionTextblockStyle}"
                            Grid.Row="1" VerticalAlignment="Bottom" />
 
-            </Grid>
+                </Grid>
 
-            <Grid BorderBrush="{ThemeResource RibbonColumnBorder}"
+                <Grid BorderBrush="{ThemeResource RibbonColumnBorder}"
                   BorderThickness="0,0,1,0"
                   Padding="12"
                   Grid.Column="2">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="72" />
-                    <RowDefinition Height="24" />
-                </Grid.RowDefinitions>
-
-                <Grid ColumnSpacing="8">
-
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="72" />
+                        <RowDefinition Height="24" />
                     </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                    <Grid ColumnSpacing="8">
 
-                    <RadioButton x:Name="AlignLeftButton" Style="{StaticResource PaintUIToggleButtonStyle}"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <RadioButton x:Name="AlignLeftButton" Style="{StaticResource PaintUIToggleButtonStyle}"
                                  Content="&#xe8e4;"
                                  Width="32"
                                  MinWidth="32"
@@ -812,7 +822,7 @@ Value="11"
                                  Grid.Row="1"
                                  GroupName="Alignment" Click="AlignLeftButton_Click"/>
 
-                    <RadioButton x:Name="AlignCenterButton" Style="{StaticResource PaintUIToggleButtonStyle}"
+                        <RadioButton x:Name="AlignCenterButton" Style="{StaticResource PaintUIToggleButtonStyle}"
                                  Content="&#xe8e3;"
                                  Width="32"
                                  MinWidth="32"
@@ -822,7 +832,7 @@ Value="11"
                                  Grid.Row="1"
                                  GroupName="Alignment" Click="AlignCenterButton_Click" />
 
-                    <RadioButton x:Name="AlignRightButton" Style="{StaticResource PaintUIToggleButtonStyle}"
+                        <RadioButton x:Name="AlignRightButton" Style="{StaticResource PaintUIToggleButtonStyle}"
                                  Content="&#xe8e2;"
                                  Width="32"
                                  MinWidth="32"
@@ -832,7 +842,7 @@ Value="11"
                                  Grid.Row="1"
                                  GroupName="Alignment" Click="AlignRightButton_Click"/>
 
-                    <RadioButton x:Name="AlignJustifyButton" Style="{StaticResource PaintUIToggleButtonStyle}"
+                        <RadioButton x:Name="AlignJustifyButton" Style="{StaticResource PaintUIToggleButtonStyle}"
                                  Content="&#xe700;"
                                  Width="32"
                                  MinWidth="32"
@@ -843,7 +853,7 @@ Value="11"
                                  GroupName="Alignment"
                                  Click="AlignJustifyButton_Click"/>
 
-                    <Button x:Name="ParagraphButton" Style="{StaticResource PaintUIButtonStyle}"
+                        <Button x:Name="ParagraphButton" Style="{StaticResource PaintUIButtonStyle}"
                                  Width="32"
                                  MinWidth="32"
                                  MaxWidth="32"
@@ -852,80 +862,80 @@ Value="11"
                                  Click="ParagraphButton_Click"
                                  Grid.Column="4"
                                  Grid.Row="1" Padding="0"  FontSize="20">
-                        <PathIcon Data="M12.25 12.25A4.25 4.25 0 0 1 16.5 8h4.75a.75.75 0 0 1 0 1.5H21v11.75a.75.75 0 0 1-1.5 0V9.5h-1v11.75a.75.75 0 0 1-1.5 0V16.5h-.5a4.25 4.25 0 0 1-4.25-4.25ZM3 5a1 1 0 0 0 0 2h18a1 1 0 1 0 0-2H3ZM11.755 10H3a1 1 0 1 0 0 2h8.256c.033-.713.209-1.389.5-2Z M12.027 15H3a1 1 0 1 0 0 2h11.261a5.273 5.273 0 0 1-2.234-2Z"/>
-                    </Button>
-                    <ToggleSplitButton x:Name="myListButton" Grid.Column="2" Grid.ColumnSpan="3" Width="77" Height="29" Padding="11,0,11,0" Style="{StaticResource PaintUIHorizontalSplitButton}" FontFamily="{ThemeResource SymbolThemeFontFamily}" Content="&#xEA37;" FontSize="16">
-                        <ToggleSplitButton.Flyout>
-                            <Flyout Placement="Bottom">
-                                <Grid>
-                                    <Grid.Resources>
-                                        <Style TargetType="Button">
-                                            <Setter Property="Padding" Value="4"/>
-                                            <Setter Property="MinWidth" Value="0"/>
-                                            <Setter Property="MinHeight" Value="0"/>
-                                            <Setter Property="Margin" Value="6"/>
-                                            <Setter Property="CornerRadius" Value="{StaticResource ControlCornerRadius}"/>
-                                            <Setter Property="Background" Value="White" />
-                                        </Style>
-                                    </Grid.Resources>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
+                            <PathIcon Data="M12.25 12.25A4.25 4.25 0 0 1 16.5 8h4.75a.75.75 0 0 1 0 1.5H21v11.75a.75.75 0 0 1-1.5 0V9.5h-1v11.75a.75.75 0 0 1-1.5 0V16.5h-.5a4.25 4.25 0 0 1-4.25-4.25ZM3 5a1 1 0 0 0 0 2h18a1 1 0 1 0 0-2H3ZM11.755 10H3a1 1 0 1 0 0 2h8.256c.033-.713.209-1.389.5-2Z M12.027 15H3a1 1 0 1 0 0 2h11.261a5.273 5.273 0 0 1-2.234-2Z"/>
+                        </Button>
+                        <ToggleSplitButton x:Name="myListButton" Grid.Column="2" Grid.ColumnSpan="3" Width="77" Height="29" Padding="11,0,11,0" Style="{StaticResource PaintUIHorizontalSplitButton}" FontFamily="{ThemeResource SymbolThemeFontFamily}" Content="&#xEA37;" FontSize="16">
+                            <ToggleSplitButton.Flyout>
+                                <Flyout Placement="Bottom">
+                                    <Grid>
+                                        <Grid.Resources>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Padding" Value="4"/>
+                                                <Setter Property="MinWidth" Value="0"/>
+                                                <Setter Property="MinHeight" Value="0"/>
+                                                <Setter Property="Margin" Value="6"/>
+                                                <Setter Property="CornerRadius" Value="{StaticResource ControlCornerRadius}"/>
+                                                <Setter Property="Background" Value="White" />
+                                            </Style>
+                                        </Grid.Resources>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Button x:Name="NoneNumeral" Grid.Row="0" Grid.Column="0" Click="NoneNumeral_Click" Width="64" Height="64">
-                                        <Image Source="/Assets/listnumbersimages/none.png" Width="60" Height="60" />
-                                    </Button>
-                                    <Button x:Name="DottedNumeral" Grid.Row="0" Grid.Column="1" Click="DottedNumeral_Click" Width="64" Height="64">
-                                        <Image Source="/Assets/listnumbersimages/dot.bmp" Width="60" Height="60" />
-                                    </Button>
-                                    <Button x:Name="NumberNumeral" Grid.Row="0" Grid.Column="2" Click="NumberNumeral_Click" Height="64" Width="64">
-                                        <Image Source="/Assets/listnumbersimages/number.png" Width="60" Height="60" />
-                                    </Button>
-                                    <Button x:Name="LetterSmallNumeral" Grid.Row="1" Grid.Column="0" Click="LetterSmallNumeral_Click" Height="64" Width="64">
-                                        <Image Source="/Assets/listnumbersimages/abc.png" Width="60" Height="60" />
-                                    </Button>
-                                    <Button x:Name="LetterBigNumeral"  Grid.Row="1" Grid.Column="1" Click="LetterBigNumeral_Click" Height="64" Width="64">
-                                        <Image Source="/Assets/listnumbersimages/ABCB.png" Width="60" Height="60" />
-                                    </Button>
-                                    <Button x:Name="SmalliNumeral" Grid.Row="1" Grid.Column="2" Click="SmalliNumeral_Click" Height="64" Width="64">
-                                        <Image Source="/Assets/listnumbersimages/iii.png" Width="64" Height="64" />
-                                    </Button>
-                                    <Button x:Name="BigINumeral" Grid.Row="2" Grid.Column="0" Click="BigINumeral_Click" Height="64" Width="64">
-                                        <Image Source="/Assets/listnumbersimages/IIII.png" Width="64" Height="64" />
-                                    </Button>
-                                </Grid>
-                            </Flyout>
-                        </ToggleSplitButton.Flyout>
-                    </ToggleSplitButton>
-                    <SplitButton Grid.Column="4" Height="29" Width="77"  FontSize="18" Margin="2,0,0,0" Style="{StaticResource PaintUIHorizontalSplitButton}">
-                        <PathIcon Data="M13.5 3a5.5 5.5 0 1 0 0 11H15v7.208c0 .437.336.792.75.792s.75-.355.75-.792V4.5H18v16.708c0 .437.336.792.75.792s.75-.355.75-.792V4.5h.545l.13-.007c.466-.05.825-.363.825-.743 0-.414-.427-.75-.955-.75H13.5ZM4.08 11.857a.668.668 0 0 1-.898-.983L4.896 9 3.182 7.126l-.062-.077a.668.668 0 0 1 1.033-.84l2.146 2.333.065.081a.668.668 0 0 1-.065.835l-2.146 2.333-.073.066ZM5.401 19.858a.668.668 0 0 0 .898-.984L4.585 17 6.3 15.126l.062-.077a.668.668 0 0 0-1.033-.84l-2.146 2.333-.065.081a.668.668 0 0 0 .065.835l2.146 2.333.073.067Z"/>
-                        <SplitButton.Flyout>
-                            <MenuFlyout>
-                                <ToggleMenuFlyoutItem Text="1,0" IsChecked="False"/>
-                                <ToggleMenuFlyoutItem Text="1,15" IsChecked="True"/>
-                                <ToggleMenuFlyoutItem Text="1,5" IsChecked="False"/>
-                                <ToggleMenuFlyoutItem Text="2" IsChecked="False"/>
-                                <MenuFlyoutSeparator/>
-                                <ToggleMenuFlyoutItem Text="Add 10pt space after paragraphs" IsChecked="True"/>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button x:Name="NoneNumeral" Grid.Row="0" Grid.Column="0" Click="NoneNumeral_Click" Width="64" Height="64">
+                                            <Image Source="/Assets/listnumbersimages/none.png" Width="60" Height="60" />
+                                        </Button>
+                                        <Button x:Name="DottedNumeral" Grid.Row="0" Grid.Column="1" Click="DottedNumeral_Click" Width="64" Height="64">
+                                            <Image Source="/Assets/listnumbersimages/dot.bmp" Width="60" Height="60" />
+                                        </Button>
+                                        <Button x:Name="NumberNumeral" Grid.Row="0" Grid.Column="2" Click="NumberNumeral_Click" Height="64" Width="64">
+                                            <Image Source="/Assets/listnumbersimages/number.png" Width="60" Height="60" />
+                                        </Button>
+                                        <Button x:Name="LetterSmallNumeral" Grid.Row="1" Grid.Column="0" Click="LetterSmallNumeral_Click" Height="64" Width="64">
+                                            <Image Source="/Assets/listnumbersimages/abc.png" Width="60" Height="60" />
+                                        </Button>
+                                        <Button x:Name="LetterBigNumeral"  Grid.Row="1" Grid.Column="1" Click="LetterBigNumeral_Click" Height="64" Width="64">
+                                            <Image Source="/Assets/listnumbersimages/ABCB.png" Width="60" Height="60" />
+                                        </Button>
+                                        <Button x:Name="SmalliNumeral" Grid.Row="1" Grid.Column="2" Click="SmalliNumeral_Click" Height="64" Width="64">
+                                            <Image Source="/Assets/listnumbersimages/iii.png" Width="64" Height="64" />
+                                        </Button>
+                                        <Button x:Name="BigINumeral" Grid.Row="2" Grid.Column="0" Click="BigINumeral_Click" Height="64" Width="64">
+                                            <Image Source="/Assets/listnumbersimages/IIII.png" Width="64" Height="64" />
+                                        </Button>
+                                    </Grid>
+                                </Flyout>
+                            </ToggleSplitButton.Flyout>
+                        </ToggleSplitButton>
+                        <SplitButton Grid.Column="4" Height="29" Width="77"  FontSize="18" Margin="2,0,0,0" Style="{StaticResource PaintUIHorizontalSplitButton}">
+                            <PathIcon Data="M13.5 3a5.5 5.5 0 1 0 0 11H15v7.208c0 .437.336.792.75.792s.75-.355.75-.792V4.5H18v16.708c0 .437.336.792.75.792s.75-.355.75-.792V4.5h.545l.13-.007c.466-.05.825-.363.825-.743 0-.414-.427-.75-.955-.75H13.5ZM4.08 11.857a.668.668 0 0 1-.898-.983L4.896 9 3.182 7.126l-.062-.077a.668.668 0 0 1 1.033-.84l2.146 2.333.065.081a.668.668 0 0 1-.065.835l-2.146 2.333-.073.066ZM5.401 19.858a.668.668 0 0 0 .898-.984L4.585 17 6.3 15.126l.062-.077a.668.668 0 0 0-1.033-.84l-2.146 2.333-.065.081a.668.668 0 0 0 .065.835l2.146 2.333.073.067Z"/>
+                            <SplitButton.Flyout>
+                                <MenuFlyout>
+                                    <ToggleMenuFlyoutItem Text="1,0" IsChecked="False"/>
+                                    <ToggleMenuFlyoutItem Text="1,15" IsChecked="True"/>
+                                    <ToggleMenuFlyoutItem Text="1,5" IsChecked="False"/>
+                                    <ToggleMenuFlyoutItem Text="2" IsChecked="False"/>
+                                    <MenuFlyoutSeparator/>
+                                    <ToggleMenuFlyoutItem Text="Add 10pt space after paragraphs" IsChecked="True"/>
 
-                            </MenuFlyout>
-                        </SplitButton.Flyout>
-                    </SplitButton>
-                    <Button x:Name="IndentationIncreaseLeft" Style="{StaticResource PaintUIButtonStyle}"
+                                </MenuFlyout>
+                            </SplitButton.Flyout>
+                        </SplitButton>
+                        <Button x:Name="IndentationIncreaseLeft" Style="{StaticResource PaintUIButtonStyle}"
                         Content=""
                         Width="32"
                         MinWidth="32"
                         MaxWidth="32"
                         Height="32"
                         HorizontalAlignment="Center" Click="Button_Click_2"/>
-                    <Button x:Name="IndentationIncreaseRight" Style="{StaticResource PaintUIButtonStyle}"
+                        <Button x:Name="IndentationIncreaseRight" Style="{StaticResource PaintUIButtonStyle}"
                         Content=""
                         Width="32"
                         MinWidth="32"
@@ -934,59 +944,59 @@ Value="11"
                         Grid.Column="1"
                         HorizontalAlignment="Center" />
 
-                </Grid>
+                    </Grid>
 
-                <TextBlock Text="Paragraph"
+                    <TextBlock Text="Paragraph"
                            Style="{StaticResource ColumnDescriptionTextblockStyle}"
                            Grid.Row="1" VerticalAlignment="Bottom" />
 
-            </Grid>
+                </Grid>
 
-            <Grid BorderBrush="{ThemeResource RibbonColumnBorder}"
+                <Grid BorderBrush="{ThemeResource RibbonColumnBorder}"
                   BorderThickness="0,0,1,0"
                   Padding="12"
                   Grid.Column="3">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="72" />
-                    <RowDefinition Height="24" />
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="72" />
+                        <RowDefinition Height="24" />
+                    </Grid.RowDefinitions>
 
-                <Grid ColumnSpacing="8">
+                    <Grid ColumnSpacing="8">
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                    <SplitButton x:Name="addimagesplitbutton" Style="{StaticResource PaintUISplitButtonStyle}" Click="AddImageButton_Click"
+                        <SplitButton x:Name="addimagesplitbutton" Style="{StaticResource PaintUISplitButtonStyle}" Click="AddImageButton_Click"
                                       Grid.Column="0"
                                       >
-                        <SplitButton.Flyout>
-                            <MenuFlyout Placement="Bottom">
-                                <MenuFlyoutItem Text="Picture">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon Glyph="&#xe91b;" FontSize="22" />
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Change picture">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon Glyph="&#xf0e3;" />
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Resize picture">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon Glyph="&#xf0e3;" />
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                            </MenuFlyout>
-                        </SplitButton.Flyout>
-                        <FontIcon FontSize="16" Glyph="&#xe8b9;"/>
+                            <SplitButton.Flyout>
+                                <MenuFlyout Placement="Bottom">
+                                    <MenuFlyoutItem Text="Picture">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon Glyph="&#xe91b;" FontSize="22" />
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem Text="Change picture">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon Glyph="&#xf0e3;" />
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem Text="Resize picture">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon Glyph="&#xf0e3;" />
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                </MenuFlyout>
+                            </SplitButton.Flyout>
+                            <FontIcon FontSize="16" Glyph="&#xe8b9;"/>
 
-                    </SplitButton>
+                        </SplitButton>
 
-                    <Button x:Name="datebutton" Style="{StaticResource PaintUIButtonStyle}"
+                        <Button x:Name="datebutton" Style="{StaticResource PaintUIButtonStyle}"
                                  Content=""
                                  Width="32"
                                  MinWidth="32"
@@ -996,7 +1006,7 @@ Value="11"
                                  Grid.Row="1" VerticalAlignment="Top" Margin="0,10,0,0" Click="Button_Click_4Async"
                                  />
 
-                    <Button Style="{StaticResource PaintUIButtonStyle}"
+                        <Button Style="{StaticResource PaintUIButtonStyle}"
                                  Width="32"
                                  MinWidth="32"
                                  MaxWidth="32"
@@ -1005,127 +1015,141 @@ Value="11"
                                  Grid.Row="1"
                                  Content="" VerticalAlignment="Top" Margin="0,10,0,0" Click="Button_Click_3Async">
 
-                    </Button>
+                        </Button>
 
 
-                </Grid>
+                    </Grid>
 
-                <TextBlock Text="Insert"
+                    <TextBlock Text="Insert"
                            Style="{StaticResource ColumnDescriptionTextblockStyle}"
                            Grid.Row="1" VerticalAlignment="Bottom" />
 
-            </Grid>
-            <Grid BorderBrush="{ThemeResource RibbonColumnBorder}"
+                </Grid>
+                <Grid BorderBrush="{ThemeResource RibbonColumnBorder}"
                 BorderThickness="0,0,1,0"
                 Padding="0,12,0,0"
                 Grid.Column="4" Grid.ColumnSpan="2" Margin="2,0,0,5">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="72" />
-                    <RowDefinition Height="24" />
-                </Grid.RowDefinitions>
-
-                <Grid ColumnSpacing="8">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="32*"/>
-                        <RowDefinition Height="32*"/>
-                        <RowDefinition Height="32*"/>
+                        <RowDefinition Height="72" />
+                        <RowDefinition Height="24" />
                     </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <DropDownButton x:Name="replacebutton" Style="{StaticResource PaintUIButtonStyle}"
+                    <Grid ColumnSpacing="8">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32*"/>
+                            <RowDefinition Height="32*"/>
+                            <RowDefinition Height="32*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <DropDownButton x:Name="replacebutton" Style="{StaticResource PaintUIButtonStyle}"
                 Content=""
                 Width="132"
                 MinWidth="32"
                 Height="24"
                 Grid.Row="1" HorizontalAlignment="Stretch" Click="Button_Click" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="8,0,0,0">
-                        <DropDownButton.Flyout>
-                            <Flyout Placement="Bottom">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock
+                            <DropDownButton.Flyout>
+                                <Flyout Placement="Bottom">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock
                                     Margin="0,0,0,5"
                                     FontSize="14"
                                     FontWeight="SemiBold"
                                     Style="{StaticResource CaptionTextBlockStyle}"
                                     Text="Find" />
 
-                                    <TextBox
+                                        <TextBox
                                     x:Name="findBox"
                                     Width="330"
                                     PlaceholderText="Text to look for" />
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Margin="0,10,0,0" Click="FindButton_Click">Find</Button>
-                                        <Button Margin="5,10,0,0" Click="RemoveHighlightButton_Click">Remove highlights</Button>
-                                    </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Margin="0,10,0,0" Click="FindButton_Click">Find</Button>
+                                            <Button Margin="5,10,0,0" Click="RemoveHighlightButton_Click">Remove highlights</Button>
+                                        </StackPanel>
 
-                                    <TextBlock
+                                        <TextBlock
                                     Margin="0,10,0,5"
                                     FontSize="14"
                                     FontWeight="SemiBold"
                                     Style="{StaticResource CaptionTextBlockStyle}"
                                     Text="Replace" />
-                                    <TextBox
+                                        <TextBox
                                     x:Name="replaceBox"
                                     Width="330"
                                     PlaceholderText="New text" />
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Margin="0,10,0,0" Click="ReplaceSelected_Click">Replace selected text</Button>
-                                        <Button Margin="5,10,0,0" Click="ReplaceAll_Click">Replace all occurrences</Button>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Margin="0,10,0,0" Click="ReplaceSelected_Click">Replace selected text</Button>
+                                            <Button Margin="5,10,0,0" Click="ReplaceAll_Click">Replace all occurrences</Button>
+                                        </StackPanel>
                                     </StackPanel>
-                                </StackPanel>
-                            </Flyout>
-                        </DropDownButton.Flyout>
-                    </DropDownButton>
+                                </Flyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
 
 
-                    <TextBlock HorizontalAlignment="Left" Margin="37,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Replace" VerticalAlignment="Center" FontFamily="Segoe UI Variable Display"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="37,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Select All" VerticalAlignment="Center" FontFamily="Segoe UI Variable Display"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="37,0,0,0" TextWrapping="Wrap" Text="Find" VerticalAlignment="Center" FontFamily="Segoe UI Variable Display"/>
-                    <DropDownButton x:Name="findbutton" Style="{StaticResource PaintUIButtonStyle}"
+                        <TextBlock HorizontalAlignment="Left" Margin="37,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Replace" VerticalAlignment="Center" FontFamily="Segoe UI Variable Display"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="37,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Select All" VerticalAlignment="Center" FontFamily="Segoe UI Variable Display"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="37,0,0,0" TextWrapping="Wrap" Text="Find" VerticalAlignment="Center" FontFamily="Segoe UI Variable Display"/>
+                        <DropDownButton x:Name="findbutton" Style="{StaticResource PaintUIButtonStyle}"
                 Content="&#xE11A;"
                 Width="132"
                 Height="24"
                 Grid.Row="0" HorizontalAlignment="Stretch" Click="Button_Click" VerticalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="8,0,0,0">
-                        <DropDownButton.Flyout>
-                            <Flyout Placement="Bottom">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock
+                            <DropDownButton.Flyout>
+                                <Flyout Placement="Bottom">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock
                                     Margin="0,0,0,5"
                                     FontSize="14"
                                     FontWeight="SemiBold"
                                     Style="{StaticResource CaptionTextBlockStyle}"
                                     Text="Find" />
 
-                                    <TextBox
+                                        <TextBox
                                     x:Name="replacefindBox"
                                     Width="330"
                                     PlaceholderText="Text to look for" />
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Margin="0,10,0,0" Click="FindButton_Click">Find</Button>
-                                        <Button Margin="5,10,0,0" Click="RemoveHighlightButton_Click">Remove highlights</Button>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Margin="0,10,0,0" Click="FindButton_Click">Find</Button>
+                                            <Button Margin="5,10,0,0" Click="RemoveHighlightButton_Click">Remove highlights</Button>
+                                        </StackPanel>
                                     </StackPanel>
-                                </StackPanel>
-                            </Flyout>
-                        </DropDownButton.Flyout>
-                    </DropDownButton>
-                    <Button x:Name="SelectAll" Style="{StaticResource PaintUIButtonStyle}"
+                                </Flyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                        <Button x:Name="SelectAll" Style="{StaticResource PaintUIButtonStyle}"
                 Content=""
                 Width="132"
                 MinWidth="32"
                 Height="24"
                 Grid.Row="2" HorizontalAlignment="Stretch" Click="Button_Click" VerticalAlignment="Stretch" Padding="8,0,0,0" HorizontalContentAlignment="Left"/>
 
-                </Grid>
+                    </Grid>
 
-                <TextBlock Text="Editing"
+                    <TextBlock Text="Editing"
                     Style="{StaticResource ColumnDescriptionTextblockStyle}"
                     Grid.Row="1" VerticalAlignment="Bottom" />
 
-            </Grid>
+                </Grid>
 
+            </Grid>
+            <Grid x:Name="ribbonhelp" Visibility="Collapsed">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="137"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="0" />
+                </Grid.ColumnDefinitions>
+            </Grid>
         </Grid>
+
 
         <Grid x:Name="EditorContentHost"
              
