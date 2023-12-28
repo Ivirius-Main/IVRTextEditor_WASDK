@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Shapes;
 using Microsoft.UI;
+using Microsoft.UI.Composition.SystemBackdrops;
 
 namespace IVRTextEditor_WASDK.Views;
 
