@@ -22,7 +22,7 @@
 
     <RelativePanel x:Name="ContentArea">
         <Grid x:Name="RibbonTabs" Background="Transparent" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
-            <controls:Segmented>
+            <controls:Segmented IsItemClickEnabled="True" ItemClick="Segmented_ItemClick">
                 <controls:SegmentedItem x:Name="HomeTab" Content="Home" IsSelected="True" ></controls:SegmentedItem>
                 <controls:SegmentedItem x:Name="HelpTab" Content="Help"></controls:SegmentedItem>
             </controls:Segmented>

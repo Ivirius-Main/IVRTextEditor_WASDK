@@ -24,15 +24,6 @@ public sealed partial class MainPage : Page
         ViewModel = App.GetService<MainViewModel>();
         InitializeComponent();
         this.NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Required;
-        if (HelpTab.IsSelected == true )
-        {
-            ribbonhome.Visibility = Visibility.Collapsed;
-            ribbonhelp.Visibility = Visibility.Visible;
-        } else
-        {
-            ribbonhome.Visibility = Visibility.Visible;
-            ribbonhelp.Visibility = Visibility.Collapsed;
-        }
     }
 
 
@@ -434,5 +425,19 @@ public sealed partial class MainPage : Page
             charFormatting.Size = (float)sender.Value;
             selectedText.CharacterFormat = charFormatting;
         }   
+    }
+
+    private void Segmented_ItemClick(object sender, ItemClickEventArgs e)
+    {
+        if (HomeTab.IsSelected == true)
+        {
+            ribbonhome.Visibility = Visibility.Collapsed;
+            ribbonhelp.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            ribbonhome.Visibility = Visibility.Visible;
+            ribbonhelp.Visibility = Visibility.Collapsed;
+        }
     }
 }
