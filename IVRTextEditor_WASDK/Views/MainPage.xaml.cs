@@ -440,4 +440,14 @@ public sealed partial class MainPage : Page
             ribbonhelp.Visibility = Visibility.Collapsed;
         }
     }
+
+    private void Settings_Click(object sender, RoutedEventArgs e)
+    {
+        Frame.Navigate(typeof(SettingsPage));
+    }
+
+    private void utever_click(object sender, RoutedEventArgs e)
+    {
+
+    }
 }

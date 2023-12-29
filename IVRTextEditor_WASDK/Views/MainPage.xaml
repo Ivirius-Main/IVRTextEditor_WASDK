@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:CommunityToolkit.WinUI.Controls" xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
     mc:Ignorable="d">
     <Page.Resources>
         <DataTemplate x:Key="ComboBoxItemTemplate">
@@ -26,6 +26,22 @@
                 <controls:SegmentedItem x:Name="HomeTab" Content="Home" IsSelected="True" ></controls:SegmentedItem>
                 <controls:SegmentedItem x:Name="HelpTab" Content="Help"></controls:SegmentedItem>
             </controls:Segmented>
+            <Button Style="{StaticResource MenuButton}"
+                ToolTipService.ToolTip="Settings"
+                ToolTipService.Placement="Bottom"
+                Grid.Row="2"
+                Click="Settings_Click" Margin="0,0,8,0" HorizontalAlignment="Right">
+                <Button.Content>
+                    <AnimatedIcon x:Name="SearchAnimatedIcon" Height="16" Width="16">
+                        <AnimatedIcon.Source>
+                            <animatedvisuals:AnimatedSettingsVisualSource/>
+                        </AnimatedIcon.Source>
+                        <AnimatedIcon.FallbackIconSource>
+                            <SymbolIconSource Symbol="Find"/>
+                        </AnimatedIcon.FallbackIconSource>
+                    </AnimatedIcon>
+                </Button.Content>
+            </Button>
         </Grid>
 
         <Grid x:Name="ribbongrid" Background="{ThemeResource LayerOnMicaBaseAltFillColorDefault}"
@@ -1143,10 +1159,24 @@ Value="11"
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="137"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="0" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,27,0,0" Spacing="10">
+                    <Button x:Name="utever" FontFamily="{StaticResource SymbolThemeFontFamily}" Width="40" Height="53" FontSize="22" Click="utever_click" ToolTipService.ToolTip="utever" CornerRadius="4,4,4,4" VerticalAlignment="Center" Padding="0,0,0,0" Background="Transparent" BorderBrush="{x:Null}">
+                        <Grid Height="48" Margin="0,-3,0,0">
+                            <Grid Height="55" HorizontalAlignment="Center" VerticalAlignment="Top" Width="55" RenderTransformOrigin="0.5,0.5" Margin="0,-14,2,0">
+                                <Grid.RenderTransform>
+                                    <CompositeTransform ScaleX="0.5" ScaleY="0.5"/>
+                                </Grid.RenderTransform>
+                                <TextBlock TextWrapping="Wrap" Text="&#xE91B;" FontFamily="{StaticResource SymbolThemeFontFamily}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
+                            </Grid>
+                            <TextBlock FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" TextAlignment="Center" Margin="0,0,0,1"><Run Text="Insert"/><LineBreak/><Run Text="Image"/></TextBlock>
+                        </Grid>
+                    </Button>
+                </StackPanel>
             </Grid>
         </Grid>
 
