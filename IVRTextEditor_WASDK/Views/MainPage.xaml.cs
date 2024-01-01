@@ -448,6 +448,7 @@ public sealed partial class MainPage : Page
 
     private void utever_click(object sender, RoutedEventArgs e)
     {
-
+        VRAWindow changelog = new VRAWindow();
+        changelog.Activate();
     }
 }

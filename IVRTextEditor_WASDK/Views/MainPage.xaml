@@ -1171,9 +1171,8 @@ Value="11"
                                 <Grid.RenderTransform>
                                     <CompositeTransform ScaleX="0.5" ScaleY="0.5"/>
                                 </Grid.RenderTransform>
-                                <TextBlock TextWrapping="Wrap" Text="&#xE91B;" FontFamily="{StaticResource SymbolThemeFontFamily}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
                             </Grid>
-                            <TextBlock FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" TextAlignment="Center" Margin="0,0,0,1"><Run Text="Insert"/><LineBreak/><Run Text="Image"/></TextBlock>
+                            <TextBlock FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" TextAlignment="Center" Margin="0,0,0,1"><Run Text="About"/></TextBlock>
                         </Grid>
                     </Button>
                 </StackPanel>
@@ -1188,7 +1187,7 @@ Value="11"
 
             <Grid x:Name="EditorGrid" Background="Transparent"
                   Width="816"
-                  Margin="0,40,0,0" BorderBrush="#e8e8e8" BorderThickness="1,1,1,0" HorizontalAlignment="Center" CornerRadius="8">
+                  Margin="0,40,0,0" BorderBrush="#e8e8e8" HorizontalAlignment="Center" CornerRadius="8">
                 <RichEditBox x:Name="Editor" SelectionChanged="editor_SelectionChanged" TextChanged="Editor_TextChanged" IsSpellCheckEnabled="False">
                 </RichEditBox>
             </Grid>

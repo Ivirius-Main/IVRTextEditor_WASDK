@@ -15,6 +15,9 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <Version>1.0.30</Version>
+    <AssemblyVersion>1.0.30</AssemblyVersion>
+    <FileVersion>1.0.30</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <Content Remove="Assets\Copy.png" />
@@ -23,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="MainWIndow.xaml" />
+    <None Remove="Views\VRAWindow.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +51,9 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\VRAWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="MainWIndow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

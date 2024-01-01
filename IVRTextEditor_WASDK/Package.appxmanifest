@@ -11,9 +11,9 @@
   IgnorableNamespaces="uap rescap genTemplate">
 
   <Identity
-    Name="51c3f568-9977-4f6f-baf0-12a7e52aac44"
+    Name="IVR.Text.WASDK"
     Publisher="CN=jpb"
-    Version="1.0.0.0" />
+    Version="1.0.30.0" />
     
   <mp:PhoneIdentity PhoneProductId="51c3f568-9977-4f6f-baf0-12a7e52aac44" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
     
